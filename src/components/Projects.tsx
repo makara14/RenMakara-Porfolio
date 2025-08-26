@@ -34,7 +34,7 @@ const Projects = () => {
     technologies: ["React.js", "Django", "PostgreSQL"],
     github: "#",
     live: "#",
-    position: "center"
+    position: "left"
   }, {
     id: 4,
     title: "Learning Management System",
@@ -43,7 +43,7 @@ const Projects = () => {
     technologies: ["Angular", "Spring Boot", "Oracle"],
     github: "#",
     live: "#",
-    position: "center"
+    position: "right"
   }];
   const containerVariants = {
     hidden: {
