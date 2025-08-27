@@ -90,7 +90,7 @@ const About = () => {
                   className="relative z-10"
                 >
                   <img
-                    src="/public/unnamed.png"
+                    src="/unnamed.png"
                     alt="Ren Makara Profile"
                     className="w-[450px] object-cover rounded-full border-4 border-primary/50 shadow-2xl"
                   />
