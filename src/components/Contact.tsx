@@ -130,20 +130,20 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div
+          {/* <motion.div
             variants={itemVariants}
             className="max-w-2xl mx-auto"
-          >
-            <motion.div
+          > */}
+            {/* <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="gradient-border bg-card p-8 rounded-xl"
-            >
-              <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
+            > */}
+              {/* <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
                 Send Me a Message
-              </h3>
+              </h3> */}
               
-              <form className="space-y-6">
+              {/* <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-foreground font-medium mb-2">
@@ -203,9 +203,9 @@ const Contact = () => {
                     Send Message
                   </Button>
                 </motion.div>
-              </form>
-            </motion.div>
-          </motion.div>
+              </form> */}
+            {/* </motion.div>
+          </motion.div> */}
 
           {/* Animated Background Elements */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">

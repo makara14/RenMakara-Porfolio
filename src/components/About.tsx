@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const About = () => {
   const ref = useRef(null);
@@ -51,34 +51,35 @@ const About = () => {
               <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-6">
                 Passionate About Creating Digital Experiences
               </h3>
-              
+
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a third-year Computer Science student passionate about web development. 
-                I enjoy learning cutting-edge technologies and building innovative projects 
-                to solve real-world challenges.
+                I'm a third-year Computer Science student passionate about web
+                development. I enjoy learning cutting-edge technologies and
+                building innovative projects to solve real-world challenges.
               </p>
-              
+
               <p className="text-lg text-muted-foreground leading-relaxed">
-                My journey in web development started with curiosity and has evolved into 
-                a deep passion for creating beautiful, functional, and user-friendly applications. 
-                I believe in writing clean, maintainable code and staying up-to-date with 
-                the latest industry trends and best practices.
+                My journey in web development started with curiosity and has
+                evolved into a deep passion for creating beautiful, functional,
+                and user-friendly applications. I believe in writing clean,
+                maintainable code and staying up-to-date with the latest
+                industry trends and best practices.
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-6">
                 <div className="text-center p-4 bg-card rounded-lg border border-border">
-                  <h4 className="text-2xl font-bold gradient-text mb-2">50+</h4>
+                  <h4 className="text-2xl font-bold gradient-text mb-2">20+</h4>
                   <p className="text-muted-foreground">Projects Completed</p>
                 </div>
                 <div className="text-center p-4 bg-card rounded-lg border border-border">
-                  <h4 className="text-2xl font-bold gradient-text mb-2">3+</h4>
+                  <h4 className="text-2xl font-bold gradient-text mb-2">1+</h4>
                   <p className="text-muted-foreground">Years Experience</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Profile Image */}
-            <motion.div 
+            <motion.div
               variants={imageVariants}
               className="flex justify-center lg:justify-end"
             >
@@ -89,23 +90,32 @@ const About = () => {
                   className="relative z-10"
                 >
                   <img
-                    src="https://via.placeholder.com/300x300/1F1F1F/FFFFFF?text=RM"
+                    src="/public/unnamed.png"
                     alt="Ren Makara Profile"
-                    className="w-80 h-80 object-cover rounded-2xl shadow-2xl"
+                    className="w-[450px] object-cover rounded-full border-4 border-primary/50 shadow-2xl"
                   />
                   {/* Gradient Border Effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-gradient-start to-gradient-end opacity-20 blur-xl" />
+                  <div className="absolute inset-0 rounded-4  xl bg-gradient-to-r from-gradient-start to-gradient-end opacity-20 blur-xl" />
                 </motion.div>
-                
+
                 {/* Floating Elements */}
                 <motion.div
                   animate={{ y: [0, -20, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                   className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-start/20 rounded-full blur-xl"
                 />
                 <motion.div
                   animate={{ y: [0, 20, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
                   className="absolute -bottom-8 -left-8 w-16 h-16 bg-gradient-end/20 rounded-full blur-xl"
                 />
               </div>

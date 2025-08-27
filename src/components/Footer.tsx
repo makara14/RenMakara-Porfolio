@@ -121,9 +121,7 @@ const Footer = () => {
             <p className="text-muted-foreground">
               © {currentYear} Ren Makara. All rights reserved.
             </p>
-            <p className="text-sm text-muted-foreground/80">
-              Built with ❤️ using React, TypeScript & Tailwind CSS
-            </p>
+
           </motion.div>
 
           {/* Animated Background Gradient */}
