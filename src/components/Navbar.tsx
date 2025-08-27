@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import {Menu, X} from "lucide-react";
+import {AiTwotoneCode} from "react-icons/ai";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,8 +51,8 @@ const Navbar = () => {
             className="cursor-pointer"
             onClick={() => scrollToSection("hero")}
           >
-            <h1 className="text-2xl font-joti font-bold text-foreground hover:gradient-text transition-all duration-300">
-              REN MAKARA
+            <h1 className="flex items-center gap-2 text-3xl font-joti font-bold text-foreground hover:gradient-text transition-all duration-300">
+              <AiTwotoneCode size={35}/> REN MAKARA
             </h1>
           </motion.div>
 

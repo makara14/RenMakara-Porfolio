@@ -15,16 +15,16 @@ const Projects = () => {
     title: "E-Commerce Platform",
     description: "Full-stack e-commerce solution with modern UI and secure payment integration",
     image: "/ecommerce.png",
-    technologies: ["Django", "Bootstrap", "Sqlite"],
+    technologies: ["Django", "Sqlite"],
     github: "https://github.com/RaGangMKR/ecommerce_django",
     live: "#",
     position: "left"
   }, {
     id: 2,
-    title: "Inventory & Product Management System",
+    title: "Inventory & Product Management",
     description: "Collaborative project management tool with real-time updates and team features",
     image: "/inventory&product.jpg",
-    technologies: ["SpringBoot", "Thymeleaf & Tailwind", "Oracle"],
+    technologies: ["SpringBoot", "Oracle"],
     github: "https://github.com/RaGangMKR/SpringBoot-Ecom",
     live: "#",
     position: "right"
@@ -33,7 +33,7 @@ const Projects = () => {
     title: "Library Management System",
     description: "Analytics dashboard for social media management with interactive charts",
     image: "/library.jpg",
-    technologies: ["Laravel", "Tailwind", "PostgreSQL"],
+    technologies: ["Laravel", "PostgreSQL"],
     github: "https://github.com/RaGangMKR/TokTok",
     live: "#",
     position: "left"
@@ -42,7 +42,7 @@ const Projects = () => {
     title: "Student Management System",
     description: "Educational platform with course management and student progress tracking",
     image: "/studentMs.png",
-    technologies: ["SpringBoot", "Thymeleaf & Tailwind", "PostgreSQL"],
+    technologies: ["SpringBoot", "PostgreSQL"],
     github: "https://github.com/RaGangMKR/StudentMSWeb",
     live: "#",
     position: "right"
@@ -119,7 +119,7 @@ const Projects = () => {
                   damping: 20
                 }
               }} className={`
-                      gradient-border bg-card rounded-xl overflow-hidden shadow-2xl max-w-lg w-full
+                      gradient-border bg-card rounded-xl overflow-hidden shadow-2xl max-w-lg w-full h-[450px] max-sm:h-[500px]
                       ${project.position === 'center' ? 'lg:max-w-md' : ''}
                     `}>
                 {/* Project Image */}
@@ -148,7 +148,7 @@ const Projects = () => {
                   {/* Action Buttons - Multiple approaches for maximum compatibility */}
                   
                   {/* Action Buttons - Plain HTML button approach */}
-                  <div className="absolute flex flex-wrap justify-center w-full sm:w-auto">
+                  <div className="absolute flex flex-wrap justify-center">
                     <button
                         onClick={() => handleGithubClick(project.github)}
                         className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-primary text-primary bg-transparent rounded-md hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer"
