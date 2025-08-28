@@ -83,16 +83,16 @@ const About = () => {
               variants={imageVariants}
               className="flex justify-center lg:justify-end"
             >
-              <div className="relative">
+              <div className="relative cursor-pointer">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="relative z-10"
                 >
                   <img
-                    src="/unnamed.png"
+                    src="/me.jpg"
                     alt="Ren Makara Profile"
-                    className="w-[450px] object-cover rounded-full border-4 border-primary/50 shadow-2xl"
+                    className="w-[450px] object-cover rounded-full border-4 border-primary/50 shadow-2xl "
                   />
                   {/* Gradient Border Effect */}
                   <div className="absolute inset-0 rounded-4  xl bg-gradient-to-r from-gradient-start to-gradient-end opacity-20 blur-xl" />

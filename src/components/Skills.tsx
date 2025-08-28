@@ -6,8 +6,12 @@ import {
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiSharp, SiSpring, SiLaravel, SiDjango, 
-  SiDotnet, SiPostgresql, SiMysql, SiOracle 
+  SiDotnet, SiPostgresql, SiMysql, SiOracle,
+  SiThemoviedatabase,
+  SiP5Dotjs
 } from 'react-icons/si';
+import { DiMsqlServer } from "react-icons/di";
+import { Github } from 'lucide-react';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('frontend');
@@ -47,7 +51,7 @@ const Skills = () => {
     database: {
       title: 'Database',
       skills: [
-        { name: 'SQL Server', icon: SiPostgresql, color: '#CC2927' },
+        { name: 'SQL Server', icon: DiMsqlServer, color: '#ff0400ff' },
         { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
         { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
         { name: 'Oracle', icon: SiOracle, color: '#F80000' },
@@ -57,6 +61,7 @@ const Skills = () => {
       title: 'Tools',
       skills: [
         { name: 'Git', icon: FaGitAlt, color: '#F05032' },
+        { name: 'GitHub', icon: Github, color: '#ffffffff' },
         { name: 'Docker', icon: FaDocker, color: '#2496ED' },
       ]
     }

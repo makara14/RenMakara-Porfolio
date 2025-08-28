@@ -1,34 +1,87 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    msg: string;
+  }>({ type: null, msg: "" });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      from_name: String(formData.get("name") || ""),
+      from_email: String(formData.get("email") || ""),
+      subject: String(formData.get("subject") || ""),
+      message: String(formData.get("message") || ""),
+    };
+
+    // Basic validation
+    if (!payload.from_name || !payload.from_email || !payload.message) {
+      setStatus({
+        type: "error",
+        msg: "Please fill in name, email, and message.",
+      });
+      return;
+    }
+
+    try {
+      setSending(true);
+      setStatus({ type: null, msg: "" });
+
+      await emailjs.send(
+        "service_3de5p6h",
+        "template_mvfkzmu",
+        payload,
+        "WfAbPmn7rVKwr_t_n"
+      );
+
+      setStatus({
+        type: "success",
+        msg: "Thanks! Your message has been sent.",
+      });
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setStatus({
+        type: "error",
+        msg: "Failed to send. Please try again later.",
+      });
+    } finally {
+      setSending(false);
+    }
+  };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      value: "renmakara.dev@gmail.com",
-      link: "mailto:renmakara.dev@gmail.com",
-      color: "text-blue-400"
+      value: "makara00814@gmail.com",
+      link: "mailto:makara00814@gmail.com",
+      color: "text-blue-400",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+855 12 345 678",
-      link: "tel:+85512345678",
-      color: "text-green-400"
+      value: "+855 963 044 008",
+      link: "tel:+855963044008",
+      color: "text-green-400",
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "Phnom Penh, Cambodia",
+      value: "Chhuk Meas, Sen Sok, Phnom Penh, Cambodia",
       link: "#",
-      color: "text-red-400"
-    }
+      color: "text-red-400",
+    },
   ];
 
   const containerVariants = {
@@ -68,8 +121,9 @@ const Contact = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-gradient-start to-gradient-end mx-auto rounded-full" />
             <p className="text-muted-foreground text-lg mt-6 max-w-2xl mx-auto">
-              I'm always interested in hearing about new opportunities and exciting projects. 
-              Let's connect and discuss how we can work together!
+              I'm always interested in hearing about new opportunities and
+              exciting projects. Let's connect and discuss how we can work
+              together!
             </p>
           </motion.div>
 
@@ -84,35 +138,43 @@ const Contact = () => {
                 <motion.div
                   key={index}
                   variants={cardVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
+                  whileHover={{
+                    scale: 1.05,
                     y: -10,
-                    transition: { type: "spring", stiffness: 300, damping: 20 }
+                    transition: { type: "spring", stiffness: 300, damping: 20 },
                   }}
                   className="gradient-border bg-card p-8 rounded-xl text-center group cursor-pointer"
                   onClick={() => {
                     if (info.link !== "#") {
-                      window.open(info.link, info.link.startsWith('mailto:') || info.link.startsWith('tel:') ? '_self' : '_blank');
+                      window.open(
+                        info.link,
+                        info.link.startsWith("mailto:") ||
+                          info.link.startsWith("tel:")
+                          ? "_self"
+                          : "_blank"
+                      );
                     }
                   }}
                 >
                   <motion.div
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.2,
-                      rotate: 360
+                      rotate: 360,
                     }}
                     transition={{ duration: 0.6 }}
                     className="flex justify-center mb-6"
                   >
-                    <div className={`p-4 rounded-full bg-gradient-to-r from-gradient-start to-gradient-end shadow-lg`}>
+                    <div
+                      className={`p-4 rounded-full bg-gradient-to-r from-gradient-start to-gradient-end shadow-lg`}
+                    >
                       <IconComponent size={32} className="text-white" />
                     </div>
                   </motion.div>
-                  
+
                   <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:gradient-text transition-all duration-300">
                     {info.title}
                   </h3>
-                  
+
                   <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                     {info.value}
                   </p>
@@ -130,82 +192,87 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          {/* <motion.div
-            variants={itemVariants}
-            className="max-w-2xl mx-auto"
-          > */}
-            {/* <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="gradient-border bg-card p-8 rounded-xl"
-            > */}
-              {/* <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
-                Send Me a Message
-              </h3> */}
-              
-              {/* <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-foreground font-medium mb-2">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
-                      placeholder="Enter your name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-foreground font-medium mb-2">
-                      Your Email
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-foreground font-medium mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
-                    placeholder="What's this about?"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-foreground font-medium mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    rows={6}
-                    className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground resize-none"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-                
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-center"
-                >
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="gradient-btn text-primary-foreground font-semibold px-8 py-3 rounded-full w-full md:w-auto"
-                  >
-                    <Send className="mr-2" size={20} />
-                    Send Message
-                  </Button>
-                </motion.div>
-              </form> */}
-            {/* </motion.div>
-          </motion.div> */}
+
+          <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
+            Send Me a Message
+          </h3>
+
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 border border-border p-6 rounded-xl bg-card max-w-3xl mx-auto"
+          >
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-foreground font-medium mb-2">
+                  Your Name
+                </label>
+                <input
+                  name="name"
+                  type="text"
+                  className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-foreground font-medium mb-2">
+                  Your Email
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-foreground font-medium mb-2">
+                Subject
+              </label>
+              <input
+                name="subject"
+                type="text"
+                className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
+                placeholder="What's this about?"
+              />
+            </div>
+
+            <div>
+              <label className="block text-foreground font-medium mb-2">
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows={6}
+                className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground resize-none"
+                placeholder="Tell me about your project..."
+                required
+              />
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              disabled={sending}
+              className="gradient-btn text-primary-foreground font-semibold px-8 py-3 rounded-full w-full md:w-auto"
+            >
+              <Send className="mr-2" size={20} />
+              {sending ? "Sending..." : "Send Message"}
+            </Button>
+
+            {status.type && (
+              <p
+                className={
+                  status.type === "success" ? "text-green-500" : "text-red-500"
+                }
+              >
+                {status.msg}
+              </p>
+            )}
+          </form>
 
           {/* Animated Background Elements */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
